@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristal Master | Soluções em Masterbatches e Aditivos</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B1325',
+                            card: '#152238',
+                            cyan: '#00D2FF',
+                            blue: '#0066FF',
+                            accent: '#00E5FF'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top right, #003B73 0%, #0B1325 50%, #050B14 100%);
+            min-height: 100vh;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(21, 34, 56, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-button {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-button:hover {
+            background: rgba(0, 210, 255, 0.12);
+            border-color: rgba(0, 210, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.25);
+        }
+
+        /* Continuous subtle crystal glow animation */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; filter: blur(40px); }
+            50% { opacity: 0.7; filter: blur(55px); }
+        }
+        .glow-bg {
+            animation: pulseGlow 6s infinite ease-in-out;
+        }
+
+        /* Custom Scrollbar for Modal */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B1325;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0066FF;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-slate-100 font-sans antialiased selection:bg-brand-cyan selection:text-brand-dark flex flex-col justify-between items-center min-h-screen relative overflow-x-hidden">
+
+    <!-- Ambient Glowing Orbs -->
+    <div class="fixed top-10 left-1/2 -translate-x-1/2 w-80 h-80 bg-brand-cyan rounded-full glow-bg pointer-events-none -z-10"></div>
+    <div class="fixed bottom-10 right-10 w-64 h-64 bg-brand-blue rounded-full glow-bg pointer-events-none -z-10"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 ease-out bg-brand-cyan text-brand-dark font-semibold px-6 py-3 rounded-full shadow-lg flex items-center gap-2">
+        <i class="fa-solid fa-check-circle text-lg"></i>
+        <span id="toast-message">Copiado com sucesso!</span>
+    </div>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-md px-4 py-8 flex flex-col items-center">
+
+        <!-- Top Action Controls (Share & VCard) -->
+        <div class="w-full flex justify-between items-center mb-6 px-2">
+            <button onclick="downloadVCard()" title="Salvar Contato" class="glass-button w-10 h-10 rounded-full flex items-center justify-center text-slate-300 hover:text-brand-cyan transition-colors">
+                <i class="fa-solid fa-address-card"></i>
+            </button>
+            <button onclick="shareProfile()" title="Compartilhar Perfil" class="glass-button w-10 h-10 rounded-full flex items-center justify-center text-slate-300 hover:text-brand-cyan transition-colors">
+                <i class="fa-solid fa-share-nodes"></i>
+            </button>
+        </div>
+
+        <!-- Profile Header -->
+        <header class="flex flex-col items-center text-center mb-8">
+            <div class="relative mb-4 group">
+                <!-- Outer Ring -->
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-cyan to-brand-blue rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                <!-- Profile Avatar / Brand Icon -->
+                <div class="relative w-28 h-28 rounded-full bg-slate-900 border-2 border-brand-cyan/50 flex items-center justify-center p-3 overflow-hidden shadow-2xl">
+                    <!-- Geometric Crystal Logo Placeholder / Dynamic Icon -->
+                    <svg viewBox="0 0 100 100" class="w-full h-full text-brand-cyan fill-current">
+                        <polygon points="50,5 90,30 90,70 50,95 10,70 10,30" fill="none" stroke="currentColor" stroke-width="6" />
+                        <polygon points="50,15 80,35 80,65 50,85 20,65 20,35" fill="currentColor" fill-opacity="0.2" />
+                        <path d="M50 5 L50 95 M10 30 L90 70 M10 70 L90 30" stroke="currentColor" stroke-width="3" opacity="0.6"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Company Name & Verified Badge -->
+            <div class="flex items-center gap-2 mb-1">
+                <h1 class="text-2xl font-bold tracking-wide text-white">Cristal Master</h1>
+                <span title="Perfil Oficial Verificado" class="text-brand-cyan text-lg">
+                    <i class="fa-solid fa-circle-check"></i>
+                </span>
+            </div>
+
+            <!-- Tagline / Bio -->
+            <p class="text-sm text-slate-300 max-w-xs leading-relaxed font-light mt-1">
+                Líder em másteres coloridos, aditivos e compostos termoplásticos para a indústria plástica.
+            </p>
+        </header>
+
+        <!-- Links List -->
+        <section class="w-full space-y-3.5 mb-8">
+
+            <!-- Website -->
+            <a href="https://www.cristalmaster.com.br" target="_blank" rel="noopener font-medium" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-brand-cyan flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-globe text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-slate-100 font-semibold group-hover:text-brand-cyan transition-colors">Website Oficial</div>
+                        <div class="text-xs text-slate-400">Conheça nossa estrutura e soluções</div>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-brand-cyan group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <!-- Solicitar Orçamento (Abre Modal) -->
+            <button onclick="openModal()" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group bg-gradient-to-r from-brand-blue/20 to-brand-cyan/20 border-brand-cyan/40">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-brand-cyan/20 text-brand-cyan flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-file-signature text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-white font-semibold group-hover:text-brand-cyan transition-colors">Solicitar Orçamento</div>
+                        <div class="text-xs text-slate-300">Formulário de atendimento rápido</div>
+                    </div>
+                </div>
+                <span class="text-xs font-bold bg-brand-cyan/20 text-brand-cyan px-2.5 py-1 rounded-full border border-brand-cyan/30">Rápido</span>
+            </button>
+
+            <!-- WhatsApp Comercial -->
+            <a href="https://wa.me/5547999999999?text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20produtos%20da%20Cristal%20Master." target="_blank" rel="noopener font-medium" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-slate-100 font-semibold group-hover:text-emerald-400 transition-colors">Atendimento WhatsApp</div>
+                        <div class="text-xs text-slate-400">Fale com a equipe de vendas</div>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <!-- Catálogo de Produtos -->
+            <a href="#" onclick="showToast('Catálogo digital em atualização! Entre em contato no WhatsApp.'); return false;" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-layer-group text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-slate-100 font-semibold group-hover:text-indigo-400 transition-colors">Catálogo de Produtos</div>
+                        <div class="text-xs text-slate-400">Masterbatches, aditivos e concentrados</div>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/company/cristalmaster" target="_blank" rel="noopener font-medium" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-linkedin-in text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-slate-100 font-semibold group-hover:text-sky-400 transition-colors">LinkedIn Corporativo</div>
+                        <div class="text-xs text-slate-400">Notícias e novidades industriais</div>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-sky-400 group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/cristalmaster" target="_blank" rel="noopener font-medium" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-pink-500/10 text-pink-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-slate-100 font-semibold group-hover:text-pink-400 transition-colors">Instagram</div>
+                        <div class="text-xs text-slate-400">Acompanhe nossas novidades</div>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <!-- Localização Google Maps -->
+            <a href="https://maps.google.com/?q=Cristal+Master+Joinville" target="_blank" rel="noopener font-medium" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-location-dot text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-slate-100 font-semibold group-hover:text-amber-400 transition-colors">Localização e Endereço</div>
+                        <div class="text-xs text-slate-400">Venha visitar nossa fábrica</div>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-amber-400 group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 text-xs text-slate-500 border-t border-slate-800/50">
+        <p>© <span id="year"></span> Cristal Master - Todos os direitos reservados.</p>
+        <p class="mt-1 text-slate-600">Qualidade e Inovação em Termoplásticos</p>
+    </footer>
+
+    <!-- Modal de Orçamento -->
+    <div id="quoteModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card w-full max-w-lg rounded-2xl p-6 sm:p-8 text-left relative transform scale-95 transition-transform duration-300" id="modalContainer">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center mb-6 border-b border-slate-700/50 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-brand-cyan/20 text-brand-cyan flex items-center justify-center">
+                        <i class="fa-solid fa-paper-plane text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Solicitar Orçamento</h3>
+                        <p class="text-xs text-slate-400">Preencha os dados abaixo e entraremos em contato</p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white transition-colors p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Form -->
+            <form id="quoteForm" onsubmit="submitForm(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Nome Completo / Empresa *</label>
+                    <input type="text" required placeholder="Sua empresa ou nome" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">E-mail *</label>
+                        <input type="email" required placeholder="contato@empresa.com" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Telefone / WhatsApp *</label>
+                        <input type="tel" required placeholder="(00) 00000-0000" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Tipo de Produto de Interesse</label>
+                    <select class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all">
+                        <option value="masterbatch-brancos-pretos">Masterbatches Brancos e Pretos</option>
+                        <option value="masterbatch-coloridos">Masterbatches Coloridos</option>
+                        <option value="aditivos">Aditivos Especiais</option>
+                        <option value="compostos">Compostos Termoplásticos</option>
+                        <option value="outros">Outras Soluções Personalizadas</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Detalhes do Pedido ou Aplicação</label>
+                    <textarea rows="3" placeholder="Descreva a resina utilizada, aplicação final ou especificação técnica..." class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all"></textarea>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-gradient-to-r from-brand-blue to-brand-cyan text-slate-950 font-bold py-3 rounded-lg hover:opacity-95 transition-opacity shadow-lg shadow-brand-cyan/20">
+                        Enviar Solicitação
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Set Year Dynamic
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Toast Notification System
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+            
+            toast.classList.remove('opacity-0', '-translate-y-20');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', '-translate-y-20');
+            }, 3000);
+        }
+
+        // Share Profile Functionality
+        function shareProfile() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Cristal Master',
+                    text: 'Confira as redes sociais e contatos da Cristal Master!',
+                    url: window.location.href,
+                }).catch(() => {});
+            } else {
+                copyToClipboard(window.location.href);
+                showToast('Link do perfil copiado!');
+            }
+        }
+
+        // Copy Text Fallback
+        function copyToClipboard(text) {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+        }
+
+        // Download VCard Function
+        function downloadVCard() {
+            const vcardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Cristal Master
+ORG:Cristal Master Compostos Termoplásticos
+TITLE:Masterbatches e Aditivos para Plásticos
+TEL;TYPE=WORK,VOICE:+5547999999999
+EMAIL:contato@cristalmaster.com.br
+URL:https://www.cristalmaster.com.br
+NOTE:Líder em masterbatches, aditivos e soluções em compostos termoplásticos.
+END:VCARD`;
+
+            const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute('download', 'Cristal_Master.vcf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showToast('Contato VCard baixado!');
+        }
+
+        // Modal Controls
+        function openModal() {
+            const modal = document.getElementById('quoteModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            container.classList.remove('scale-95');
+            container.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('quoteModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+        }
+
+        // Submit Form Handler
+        function submitForm(event) {
+            event.preventDefault();
+            closeModal();
+            showToast('Solicitação enviada com sucesso!');
+            document.getElementById('quoteForm').reset();
+        }
+
+        // Close Modal when clicking outside container
+        document.getElementById('quoteModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
