@@ -99,15 +99,16 @@
             </button>
         </div>
 
-<header class="flex flex-col items-center text-center mb-8">
-    <div class="relative mb-3 group flex items-center justify-center w-full">
+<!-- HEADER RESPONSIVO E CENTRALIZADO -->
+<header class="flex flex-col items-center text-center mb-8 w-full">
+    <div class="relative mb-3 group flex items-center justify-center w-full px-4">
+        <!-- Glow suave de fundo adaptado -->
+        <div class="absolute inset-0 bg-brand-cyan/25 rounded-full blur-2xl transform scale-125 pointer-events-none"></div>
         
-        <div class="absolute inset-0 bg-brand-cyan/25 rounded-full blur-3xl transform scale-150 pointer-events-none"></div>
-        
-    
+        <!-- Logo com largura responsiva perfeita para mobile e desktop -->
         <img src="img.png" 
              alt="Cristal Master Logo" 
-             class="relative z-10 w-96 max-w-full h-36 object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.6)] transition-transform duration-300 hover:scale-105">
+             class="relative z-10 w-full max-w-[280px] sm:max-w-[360px] h-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.6)] transition-transform duration-300">
     </div>
 
     <div class="flex items-center gap-2 mb-1">
