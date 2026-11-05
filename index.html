@@ -41,7 +41,6 @@
 
         * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
 
-        /* Previne linhas brancas no fundo e o "bounce" do iOS */
         html {
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
@@ -58,12 +57,11 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            /* Elimina o efeito elástico ao rolar para cima/baixo */
             overscroll-behavior-y: none; 
             touch-action: pan-y; 
             padding-top: var(--safe-top);
             padding-bottom: var(--safe-bottom);
-            -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+            -webkit-overflow-scrolling: touch;
         }
 
         .glass-button {
@@ -88,25 +86,22 @@
         }
         .icon-btn:active { transform: scale(0.92); }
 
-        /* --- ESTILO DO CÍRCULO DA LOGO (MENOR E EQUILIBRADO) --- */
+        /* --- ESTILO DO CÍRCULO DA LOGO --- */
         .logo-wrapper {
-            width: clamp(180px, 55vw, 260px);
-            height: clamp(180px, 55vw, 260px);
+            width: clamp(200px, 60vw, 280px);
+            height: clamp(200px, 60vw, 280px);
             border-radius: 50%;
             position: relative;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: center;     
+            justify-content: center; 
             background: radial-gradient(circle at 30% 30%, rgba(0, 102, 255, 0.2), rgba(11, 19, 37, 0.8));
             border: 1.5px solid rgba(0, 210, 255, 0.4);
             box-shadow: 0 0 30px rgba(0, 210, 255, 0.15), inset 0 0 20px rgba(0, 210, 255, 0.1);
             margin: 0 auto;
+            overflow: hidden; 
         }
-        
-        @keyframes rotateGlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+
         /* Efeito de brilho na borda */
         .logo-wrapper::before {
             content: '';
@@ -122,18 +117,21 @@
             pointer-events: none;
         }
 
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-               .logo-img {
-            width: 200%; /* O tamanho que você já escolheu */
+        .logo-img {
+            width: 85%; 
             height: auto;
+            max-height: 85%; 
             object-fit: contain;
             mix-blend-mode: screen; 
             z-index: 2;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
-            display: block;
-            margin: 0 auto;
-          
-            transform: translateY(-10px); 
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+            /* Use translateY para ajustar a posição se necessário */
+            transform: translateY(0px); 
         }
 
         input, select, textarea { font-size: 16px !important; }
@@ -148,8 +146,6 @@
                 scroll-behavior: auto !important;
             }
         }
-
-        body.modal-open { overflow: hidden; }
     </style>
 </head>
 <body class="text-slate-100 font-sans antialiased selection:bg-brand-cyan selection:text-brand-dark flex flex-col items-center min-h-screen relative w-full">
@@ -161,7 +157,7 @@
 
     <main class="w-full max-w-md px-4 py-6 flex flex-col mx-auto">
 
-    
+        <!-- BOTÕES SUPERIORES -->
         <div class="w-full flex justify-between items-center mb-6 px-1">
             <button onclick="downloadVCard()" aria-label="Salvar contato" class="glass-button icon-btn w-11 h-11 rounded-full flex items-center justify-center text-slate-300">
                 <i class="fa-solid fa-address-card"></i>
@@ -171,7 +167,7 @@
             </button>
         </div>
 
-       
+        <!-- HEADER DA LOGO -->
         <header class="flex flex-col items-center justify-center text-center mb-8 w-full relative">
             <div class="absolute inset-0 bg-brand-cyan/20 rounded-full blur-3xl transform scale-50 pointer-events-none" aria-hidden="true"></div>
             
@@ -180,7 +176,7 @@
             </div>
         </header>
 
-     
+        <!-- LISTA DE LINKS -->
         <section class="w-full flex flex-col gap-3.5 mb-8" aria-label="Links de contato">
 
             <a href="https://www.cristalmaster.com.br" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
@@ -196,20 +192,18 @@
                 <i class="fa-solid fa-chevron-right text-xs text-slate-500 shrink-0 ml-2" aria-hidden="true"></i>
             </a>
 
-            <button onclick="openModal()" type="button" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group bg-gradient-to-r from-brand-blue/20 to-brand-cyan/20 border-brand-cyan/40">
+            <a href="https://wa.me/554734515000?text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20produtos%20da%20Cristal%20Master." target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
                 <div class="flex items-center gap-3 min-w-0">
-                    <div class="w-10 h-10 rounded-lg bg-brand-cyan/20 text-brand-cyan flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-file-signature text-lg"></i>
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
                     </div>
                     <div class="text-left min-w-0">
-                        <div class="text-white font-semibold text-[15px] leading-tight">Solicitar Orçamento</div>
-                        <div class="text-xs text-slate-300 mt-0.5 truncate">Formulário de atendimento rápido</div>
+                        <div class="text-slate-100 font-semibold text-[15px] leading-tight">Atendimento WhatsApp</div>
+                        <div class="text-xs text-slate-400 mt-0.5 truncate">Fale com a equipe de vendas</div>
                     </div>
                 </div>
-                <span class="text-[10px] font-bold bg-brand-cyan/20 text-brand-cyan px-2 py-1 rounded-full border border-brand-cyan/30 shrink-0 ml-2">Rápido</span>
-            </button>
-
-          <a href="https://wa.me/554734515000?text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20produtos%20da%20Cristal%20Master." target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+                <i class="fa-solid fa-chevron-right text-xs text-slate-500 shrink-0 ml-2" aria-hidden="true"></i>
+            </a>
 
             <a href="#" onclick="showToast('Catálogo digital em atualização! Entre em contato no WhatsApp.'); return false;" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
                 <div class="flex items-center gap-3 min-w-0">
@@ -237,7 +231,7 @@
                 <i class="fa-solid fa-chevron-right text-xs text-slate-500 shrink-0 ml-2" aria-hidden="true"></i>
             </a>
 
-            <a href="https://www.instagram.com/cristalmaster" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+            <a href="https://www.instagram.com/cristalmasterbr/" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
                 <div class="flex items-center gap-3 min-w-0">
                     <div class="w-10 h-10 rounded-lg bg-pink-500/10 text-pink-400 flex items-center justify-center shrink-0">
                         <i class="fa-brands fa-instagram text-lg"></i>
@@ -272,76 +266,6 @@
         </footer>
 
     </main>
-
-    <!-- MODAL DE ORÇAMENTO -->
-    <div id="quoteModal" class="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="glass-card w-full max-w-lg sm:rounded-2xl rounded-t-2xl p-5 sm:p-6 text-left relative transform translate-y-full sm:translate-y-0 sm:scale-95 transition-transform duration-300 overflow-y-auto" id="modalContainer" style="max-height: 92dvh; padding-bottom: calc(1.25rem + var(--safe-bottom)); background: rgba(21, 34, 56, 0.95); backdrop-filter: blur(20px);">
-
-            <div class="sm:hidden w-12 h-1 bg-slate-600 rounded-full mx-auto mb-4" aria-hidden="true"></div>
-
-            <div class="flex justify-between items-start mb-5 border-b border-slate-700/50 pb-4 gap-3">
-                <div class="flex items-center gap-3 min-w-0">
-                    <div class="w-10 h-10 rounded-lg bg-brand-cyan/20 text-brand-cyan flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-paper-plane text-lg"></i>
-                    </div>
-                    <div class="min-w-0">
-                        <h3 id="modalTitle" class="text-base font-bold text-white leading-tight">Solicitar Orçamento</h3>
-                        <p class="text-xs text-slate-400 mt-0.5">Preencha os dados abaixo</p>
-                    </div>
-                </div>
-                <button onclick="closeModal()" aria-label="Fechar" class="icon-btn text-slate-400 p-2 -mr-2 -mt-1 shrink-0">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-
-            <form id="quoteForm" onsubmit="submitForm(event)" class="space-y-4" novalidate>
-                <div>
-                    <label for="q-name" class="block text-[11px] font-semibold text-slate-300 mb-1.5">Nome Completo / Empresa *</label>
-                    <input id="q-name" name="name" type="text" required autocomplete="organization" placeholder="Sua empresa ou nome"
-                        class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label for="q-email" class="block text-[11px] font-semibold text-slate-300 mb-1.5">E-mail *</label>
-                        <input id="q-email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="contato@empresa.com"
-                            class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all">
-                    </div>
-                    <div>
-                        <label for="q-phone" class="block text-[11px] font-semibold text-slate-300 mb-1.5">Telefone / WhatsApp *</label>
-                        <input id="q-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000"
-                            class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="q-product" class="block text-[11px] font-semibold text-slate-300 mb-1.5">Produto de Interesse</label>
-                    <select id="q-product" name="product"
-                        class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-3 text-sm text-slate-100 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all">
-                        <option value="masterbatch-brancos-pretos">Masterbatches Brancos e Pretos</option>
-                        <option value="masterbatch-coloridos">Masterbatches Coloridos</option>
-                        <option value="aditivos">Aditivos Especiais</option>
-                        <option value="compostos">Compostos Termoplásticos</option>
-                        <option value="outros">Outras Soluções Personalizadas</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="q-details" class="block text-[11px] font-semibold text-slate-300 mb-1.5">Detalhes do Pedido ou Aplicação</label>
-                    <textarea id="q-details" name="details" rows="2" placeholder="Descreva a resina, aplicação ou especificação..."
-                        class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all resize-none"></textarea>
-                </div>
-
-                <div class="pt-1">
-                    <button id="submitBtn" type="submit"
-                        class="w-full bg-gradient-to-r from-brand-blue to-brand-cyan text-slate-950 font-bold py-3.5 rounded-lg active:scale-[0.98] transition-transform shadow-lg shadow-brand-cyan/20 disabled:opacity-60 disabled:cursor-not-allowed">
-                        Enviar Solicitação
-                    </button>
-                    <p class="text-[10px] text-slate-500 text-center mt-2">Você será redirecionado ao WhatsApp</p>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <script>
         (function() {
@@ -418,88 +342,6 @@
             }
             window.downloadVCard = downloadVCard;
 
-            function openModal() {
-                const modal = document.getElementById('quoteModal');
-                const container = document.getElementById('modalContainer');
-                modal.classList.remove('opacity-0', 'pointer-events-none');
-                modal.classList.add('opacity-100');
-                modal.setAttribute('aria-hidden', 'false');
-                container.classList.remove('translate-y-full', 'sm:scale-95');
-                container.classList.add('translate-y-0', 'sm:scale-100');
-                document.body.classList.add('modal-open');
-                setTimeout(() => document.getElementById('q-name').focus(), 350);
-            }
-            window.openModal = openModal;
-
-            function closeModal() {
-                const modal = document.getElementById('quoteModal');
-                const container = document.getElementById('modalContainer');
-                modal.classList.remove('opacity-100');
-                modal.classList.add('opacity-0', 'pointer-events-none');
-                modal.setAttribute('aria-hidden', 'true');
-                container.classList.remove('translate-y-0', 'sm:scale-100');
-                container.classList.add('translate-y-full', 'sm:scale-95');
-                document.body.classList.remove('modal-open');
-            }
-            window.closeModal = closeModal;
-
-            function submitForm(event) {
-                event.preventDefault();
-                const form = event.target;
-                if (!form.checkValidity()) { form.reportValidity(); return; }
-
-                const btn = document.getElementById('submitBtn');
-                btn.disabled = true;
-                btn.textContent = 'Enviando...';
-
-                const data = {
-                    name: form.name.value.trim(),
-                    email: form.email.value.trim(),
-                    phone: form.phone.value.trim(),
-                    product: form.product.options[form.product.selectedIndex].text,
-                    details: form.details.value.trim()
-                };
-
-                const message = [
-                    '*Solicitação de Orçamento - Cristal Master*', '',
-                    '*Nome/Empresa:* ' + data.name,
-                    '*E-mail:* ' + data.email,
-                    '*Telefone:* ' + data.phone,
-                    '*Produto:* ' + data.product,
-                    data.details ? '*Detalhes:* ' + data.details : ''
-                ].filter(Boolean).join('\n');
-
-                const waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
-
-                setTimeout(() => {
-                    closeModal();
-                    form.reset();
-                    btn.disabled = false;
-                    btn.textContent = 'Enviar Solicitação';
-                    showToast('Redirecionando para WhatsApp...');
-                    window.open(waUrl, '_blank', 'noopener');
-                }, 400);
-            }
-            window.submitForm = submitForm;
-
-            document.getElementById('quoteModal').addEventListener('click', function(e) {
-                if (e.target === this) closeModal();
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    const modal = document.getElementById('quoteModal');
-                    if (modal.classList.contains('opacity-100')) closeModal();
-                }
-            });
-
-            let touchStartY = 0;
-            const container = document.getElementById('modalContainer');
-            container.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
-            container.addEventListener('touchend', e => {
-                const deltaY = e.changedTouches[0].clientY - touchStartY;
-                if (deltaY > 100 && container.scrollTop <= 0) closeModal();
-            }, { passive: true });
         })();
     </script>
 </body>
