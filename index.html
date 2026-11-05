@@ -77,9 +77,11 @@
             border-color: rgba(0, 210, 255, 0.35);
         }
 
+        /* CÍRCULO GIGANTE */
         .logo-wrapper {
-            width: clamp(200px, 60vw, 280px);
-            height: clamp(200px, 60vw, 280px);
+            width: 85vw; /* Ocupa 85% da tela */
+            max-width: 400px; /* Limite para não ficar gigante em tablets */
+            aspect-ratio: 1 / 1;
             border-radius: 50%;
             position: relative;
             display: flex;
@@ -89,7 +91,7 @@
             border: 1.5px solid rgba(0, 210, 255, 0.4);
             box-shadow: 0 0 30px rgba(0, 210, 255, 0.15), inset 0 0 20px rgba(0, 210, 255, 0.1);
             margin: 0 auto;
-            overflow: hidden; 
+            overflow: hidden; /* Impede a imagem de vazar do círculo */
         }
 
         .logo-wrapper::before {
@@ -111,10 +113,10 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* IMAGEM GIGANTE */
         .logo-img {
-            width: 85%; 
+            width: 95%; /* A imagem ocupa 95% do círculo */
             height: auto;
-            max-height: 85%; 
             object-fit: contain;
             mix-blend-mode: screen; 
             z-index: 2;
@@ -133,19 +135,19 @@
 </head>
 <body class="text-slate-100 font-sans antialiased selection:bg-brand-cyan selection:text-brand-dark flex flex-col items-center min-h-screen relative w-full">
 
-    <main class="w-full max-w-md px-4 py-8 flex flex-col mx-auto">
+    <main class="w-full max-w-md px-4 py-6 flex flex-col mx-auto">
 
-        <header class="flex flex-col items-center justify-center text-center mb-10 w-full relative">
-            <div class="absolute inset-0 bg-brand-cyan/20 rounded-full blur-3xl transform scale-50 pointer-events-none" aria-hidden="true"></div>
+        <header class="flex flex-col items-center justify-center text-center mb-6 w-full relative">
+            <div class="absolute inset-0 bg-brand-cyan/20 rounded-full blur-3xl transform scale-75 pointer-events-none" aria-hidden="true"></div>
             
             <div class="logo-wrapper relative z-10">
                 <img src="img.png" alt="Cristal Master Logo" loading="eager" decoding="async" class="logo-img">
             </div>
         </header>
 
-        <section class="w-full flex flex-col gap-3.5 mb-8" aria-label="Links de contato">
+        <section class="w-full flex flex-col gap-3 mb-6" aria-label="Links de contato">
 
-            <a href="https://www.cristalmaster.com.br" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+            <a href="https://www.cristalmaster.com.br" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-3.5 rounded-xl flex items-center justify-between group">
                 <div class="flex items-center gap-3 min-w-0">
                     <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-brand-cyan flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-globe text-lg"></i>
@@ -158,7 +160,7 @@
                 <i class="fa-solid fa-chevron-right text-xs text-slate-500 shrink-0 ml-2" aria-hidden="true"></i>
             </a>
 
-            <a href="https://wa.me/554734515000?text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20produtos%20da%20Cristal%20Master." target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+            <a href="https://wa.me/554734515000?text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20produtos%20da%20Cristal%20Master." target="_blank" rel="noopener noreferrer" class="glass-button w-full p-3.5 rounded-xl flex items-center justify-between group">
                 <div class="flex items-center gap-3 min-w-0">
                     <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
@@ -171,7 +173,7 @@
                 <i class="fa-solid fa-chevron-right text-xs text-slate-500 shrink-0 ml-2" aria-hidden="true"></i>
             </a>
 
-            <a href="https://www.cristalmaster.com.br/pt-BR/produtos/catalogos" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+            <a href="https://www.cristalmaster.com.br/pt-BR/produtos/catalogos" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-3.5 rounded-xl flex items-center justify-between group">
                 <div class="flex items-center gap-3 min-w-0">
                     <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-layer-group text-lg"></i>
@@ -184,7 +186,7 @@
                 <i class="fa-solid fa-chevron-right text-xs text-slate-500 shrink-0 ml-2" aria-hidden="true"></i>
             </a>
 
-            <a href="https://www.linkedin.com/company/cristalmaster" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+            <a href="https://www.linkedin.com/company/cristalmaster" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-3.5 rounded-xl flex items-center justify-between group">
                 <div class="flex items-center gap-3 min-w-0">
                     <div class="w-10 h-10 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center shrink-0">
                         <i class="fa-brands fa-linkedin-in text-lg"></i>
@@ -197,7 +199,7 @@
                 <i class="fa-solid fa-chevron-right text-xs text-slate-500 shrink-0 ml-2" aria-hidden="true"></i>
             </a>
 
-            <a href="https://www.instagram.com/cristalmaster" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+            <a href="https://www.instagram.com/cristalmaster" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-3.5 rounded-xl flex items-center justify-between group">
                 <div class="flex items-center gap-3 min-w-0">
                     <div class="w-10 h-10 rounded-lg bg-pink-500/10 text-pink-400 flex items-center justify-center shrink-0">
                         <i class="fa-brands fa-instagram text-lg"></i>
@@ -210,7 +212,7 @@
                 <i class="fa-solid fa-chevron-right text-xs text-slate-500 shrink-0 ml-2" aria-hidden="true"></i>
             </a>
 
-            <a href="https://www.cristalmaster.com.br/pt-BR/contato/trabalhe" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+            <a href="https://www.cristalmaster.com.br/pt-BR/contato/trabalhe" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-3.5 rounded-xl flex items-center justify-between group">
                 <div class="flex items-center gap-3 min-w-0">
                     <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-briefcase text-lg"></i>
@@ -223,7 +225,7 @@
                 <i class="fa-solid fa-chevron-right text-xs text-slate-500 shrink-0 ml-2" aria-hidden="true"></i>
             </a>
 
-            <a href="https://maps.google.com/?q=Cristal+Master+Joinville" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-4 rounded-xl flex items-center justify-between group">
+            <a href="https://maps.google.com/?q=Cristal+Master+Joinville" target="_blank" rel="noopener noreferrer" class="glass-button w-full p-3.5 rounded-xl flex items-center justify-between group">
                 <div class="flex items-center gap-3 min-w-0">
                     <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-location-dot text-lg"></i>
@@ -238,7 +240,10 @@
 
         </section>
 
-       
+        <footer class="w-full text-center text-xs text-slate-500 border-t border-slate-800/50 pt-4 pb-2">
+            <p>© <span id="year"></span> Cristal Master — Todos os direitos reservados.</p>
+            <p class="mt-1 text-slate-600">Qualidade e Inovação em Termoplásticos</p>
+        </footer>
 
     </main>
 
