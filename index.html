@@ -123,24 +123,17 @@
         }
 
 
-        .logo-img {
-           .logo-img {
-            /* ALTERE AQUI: Aumente de 65% para 90% ou 95% */
-            width: 90%; 
-            
-            /* ALTERE AQUI: Aumente o limite de altura também */
-            max-height: 90%; 
-            
+               .logo-img {
+            width: 200%; /* O tamanho que você já escolheu */
             height: auto;
             object-fit: contain;
             mix-blend-mode: screen; 
             z-index: 2;
             filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
-            
-            /* Mantenha a centralização perfeita */
             display: block;
             margin: 0 auto;
-        }
+          
+            transform: translateY(-10px); 
         }
 
         input, select, textarea { font-size: 16px !important; }
